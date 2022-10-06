@@ -1,3 +1,14 @@
+server:
+
+  port: 8080
+  ssl:
+       enabled: true
+       key-alias: local_ssl
+       key-store: classpath:local-ssl.p12
+       key-store-type: PKCS12
+       key-store-password: durmaz
+       key-password: durmaz
+
 spring:
 
   # Database
@@ -21,7 +32,7 @@ spring:
         registration:
           google:
             client-id: 832470061525-lt5hijl9f86j9m4ar8ot98uc4kvfr00k.apps.googleusercontent.com
-            client-secret: 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
+            client-secret: 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
             #spring.security.oauth2.client.registration.google.client-secret=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
             redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
