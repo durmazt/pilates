@@ -8,7 +8,7 @@ server:
        key-store-type: PKCS12
        key-store-password: durmaz
        key-password: durmaz
-
+  #https://www.youtube.com/watch?v=q0r4MQCsj8w for add certifa
 spring:
 
   # Database
@@ -32,7 +32,7 @@ spring:
         registration:
           google:
             client-id: 832470061525-lt5hijl9f86j9m4ar8ot98uc4kvfr00k.apps.googleusercontent.com
-            client-secret: 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
+            client-secret: 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
             #spring.security.oauth2.client.registration.google.client-secret=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
             redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
             scope:
