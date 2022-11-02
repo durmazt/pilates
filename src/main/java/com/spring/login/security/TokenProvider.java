@@ -2,8 +2,8 @@ package com.spring.login.security;
 
 import com.spring.login.config.AppConfig;
 import io.jsonwebtoken.*;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,15 @@ import java.util.Date;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class TokenProvider {
 
+
+
     private final AppConfig appConfig;
+    @Autowired
+    public TokenProvider(AppConfig appConfig) {
+        this.appConfig = appConfig;
+    }
 
     public String createToken(Authentication authentication) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();

@@ -3,8 +3,8 @@ package com.spring.login.security.oauth2;
 import com.spring.login.config.AppConfig;
 import com.spring.login.security.TokenProvider;
 import com.spring.login.util.CookieUtils;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,6 @@ import java.util.Optional;
 
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private final TokenProvider tokenProvider;
@@ -29,6 +28,13 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
     private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
 
+    @Autowired
+    public OAuth2AuthenticationSuccessHandler(TokenProvider tokenProvider, AppConfig appConfig, HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository)
+     {
+      this.tokenProvider=tokenProvider;
+      this.appConfig=appConfig;
+      this.httpCookieOAuth2AuthorizationRequestRepository=httpCookieOAuth2AuthorizationRequestRepository;
+     }
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         String targetUrl = determineTargetUrl(request, response, authentication);

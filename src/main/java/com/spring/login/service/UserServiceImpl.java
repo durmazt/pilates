@@ -4,18 +4,22 @@ import com.spring.login.exception.ResourceNotFoundException;
 import com.spring.login.model.User;
 import com.spring.login.repository.UserRepository;
 import com.spring.login.security.UserPrincipal;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {

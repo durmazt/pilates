@@ -22,7 +22,7 @@ public class AppConfig {
 
     public List<String> getAuthorizedRedirectUris() {
         authorizedRedirectUris.clear();
-        authorizedRedirectUris.add("http://localhost:3000/oauth2/redirect");
+        authorizedRedirectUris.add("https://localhost:3000/oauth2/redirect");
         return authorizedRedirectUris;
     }
 

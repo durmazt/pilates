@@ -22,4 +22,10 @@ public class UserController {
         return userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
     }
+    @GetMapping("/test")
+    @PreAuthorize("permitAll()")
+    public String test()
+    {
+        return "hello world";
+    }
 }

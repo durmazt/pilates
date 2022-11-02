@@ -7,7 +7,7 @@ import com.spring.login.repository.UserRepository;
 import com.spring.login.security.UserPrincipal;
 import com.spring.login.security.oauth2.user.OAuth2UserInfo;
 import com.spring.login.security.oauth2.user.OAuth2UserInfoFactory;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -20,11 +20,15 @@ import org.springframework.util.StringUtils;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final UserRepository userRepository;
+    @Autowired
+    public CustomOAuth2UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
 
+    }
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException {
         OAuth2User oAuth2User = super.loadUser(oAuth2UserRequest);
